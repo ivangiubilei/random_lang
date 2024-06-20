@@ -1,4 +1,6 @@
 # Random Lang
+This script will pull the next programming language to learn 
+
 ## Compiling
 ```
 go build rlang.go
