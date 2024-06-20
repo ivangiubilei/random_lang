@@ -12,14 +12,14 @@ export PATH="<path_to_rlang>:$PATH"
 ## Usage
 To generate a language:
 ```
-/rlang 
+rlang 
 ```
 Other options are available 
 ```
-/rlang --help
+rlang --help
 ```
 
 ## Examples
 ```
-/rlang --classic=false --functional=true --array=true
+rlang --classic=false --functional=true --array=true
 ```
