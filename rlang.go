@@ -67,13 +67,19 @@ func SelectLang(langList []string) string {
 func main() {
 	var buffer []string
 
-	classic := flag.Bool("classic", true, "Allows classic programming languages like C, C++, Python, Java, ...")
+	classic := flag.Bool("classic", false, "Allows classic programming languages like C, C++, Python, Java, ...")
 	functional := flag.Bool("functional", false, "Allows functional programming languages like Clojure, Elixir, Haskell, OCaml, ...")
 	misc := flag.Bool("misc", false, "Allows miscellaneous programming languages like Crystal, Fortran, Bash, Lua, ...")
 	array := flag.Bool("array", false, "Allows array programming languages like APL, BQN, UIUA and J")
+	all := flag.Bool("all", false, "Allows all the programming languages to be selected")
 
 	flag.Parse()
-
+	if *all {
+		*classic = true
+		*functional = true
+		*misc = true
+		*array = true
+	}
 	if *classic {
 		for _, v := range ClassicLangs() {
 			buffer = append(buffer, v)
@@ -94,5 +100,10 @@ func main() {
 			buffer = append(buffer, v)
 		}
 	}
+	if !*classic && !*functional && !*misc && !*array && !*all {
+		fmt.Println("No options provided...")
+		return
+	}
+
 	fmt.Println(SelectLang(buffer))
 }
